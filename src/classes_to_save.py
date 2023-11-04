@@ -48,9 +48,8 @@ class SaveToFileJSON(SaveToFile):
             data = json.load(file)
 
             for vacancy in data:
-                for element in vacancy.values():
-                    if param in str(element):
-                        sorted_data.append(vacancy)
+                if param in vacancy.values():
+                    sorted_data.append(vacancy)
 
         return sorted_data
 

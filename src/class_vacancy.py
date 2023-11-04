@@ -97,8 +97,20 @@ class Vacancy:
         for vacancy in vacancies:
             name = vacancy["profession"].lower()
             url = vacancy["link"]
-            description = vacancy["candidat"].lower()
-            requirements = ""
+            description = vacancy["candidat"]
+
+            if description is not None:
+                description = description.lower()
+            else:
+                description = ""
+
+            requirements = vacancy["work"]
+
+            if requirements is not None:
+                requirements = requirements.lower()
+            else:
+                requirements = ""
+
             area = vacancy["town"]["title"].lower()
             currency = vacancy["currency"].lower()
 

@@ -15,9 +15,9 @@ class HeadHunterAPI(VacanciesApi):
     def get_vacancies(self, name_vacancies):
         """Метод для получения вакансий.
            Возвращает вакансии в которых указано ключевое слово name_vacancies.
-           Возвращает максимум 50 вакансий"""
+           Возвращает максимум 100 вакансий"""
         vacancies = requests.get(f"https://api.hh.ru/vacancies?"
-                                 f"per_page=50&text={name_vacancies}")
+                                 f"per_page=100&text={name_vacancies}")
 
         return vacancies.json()["items"]
 
@@ -27,10 +27,10 @@ class SuperJobAPI(VacanciesApi):
     def get_vacancies(self, name_vacancies):
         """Метод для получения вакансий.
            Возвращает вакансии в которых указано ключевое слово name_vacancies.
-           Возвращает максимум 50 вакансий"""
+           Возвращает максимум 100 вакансий"""
         api_key = os.getenv('Superjob_API')
 
         vacancies = requests.get(f"https://api.superjob.ru/2.0/{api_key}/vacancies?"
-                                 f"count=50&keyword={name_vacancies}")
+                                 f"count=100&keyword={name_vacancies}")
 
         return vacancies.json()["objects"]

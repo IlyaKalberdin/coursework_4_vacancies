@@ -151,6 +151,6 @@ class Vacancy:
         return sorted_vacancies
 
     @staticmethod
-    def get_top_vacancies(vacancies: list, top_n: str) -> list:
+    def get_top_vacancies(vacancies: list, top_n: int) -> list:
         """Метод, который возвращает топ n вакансий из списка"""
         return vacancies[:top_n]

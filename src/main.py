@@ -41,9 +41,33 @@ def main():
 
     # Сохранение топ вакансий в json файл
     save_vacancies = SaveToFileJSON()
-    save_vacancies.save_data(top_vacancies)
+    save_vacancies.save_vacancies(top_vacancies)
 
     print("Топ вакансии сохранены в файл")
+
+    # Получение вакансии из файла
+    name_vacancies = input("Для получения вакансии из файла укажите ее наименование: ").lower()
+
+    vacancy = save_vacancies.get_vacancy(name_vacancies)
+
+    if vacancy is None:
+        print("Вакансия не найдена")
+    else:
+        vacancy = Vacancy(vacancy["name"], vacancy["url"], vacancy["salary_from"], vacancy["salary_to"],
+                          vacancy["currency"], vacancy["description"], vacancy["requirements"], vacancy["area"])
+
+    print(vacancy)
+
+    # Удаление вакансий из файла
+    user_input = input("Желаете удалить все вакансии из файла? Да/Нет: ").lower()
+
+    if user_input == "да":
+        save_vacancies.delete_vacancies()
+        print("Данные удалены")
+    elif user_input == "нет":
+        print("Данные сохранены")
+    else:
+        print("Неверный ввод. Данные сохранены")
 
 
 if __name__ == "__main__":

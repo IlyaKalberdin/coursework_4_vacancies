@@ -6,24 +6,24 @@ import json
 class SaveToFile(ABC):
     """Абстрактный класс для работы с файлом"""
     @abstractmethod
-    def save_data(self, data):
+    def save_data(self, data: list) -> None:
         """Метод для сохранения данных в файл"""
         pass
 
     @abstractmethod
-    def get_data(self, param):
+    def get_data(self, param: str) -> list:
         """Метод для получения данных из файла по параметрам"""
         pass
 
     @abstractmethod
-    def delete_data(self):
+    def delete_data(self) -> None:
         """Метод для удаления данных из файла"""
         pass
 
 
 class SaveToFileJSON(SaveToFile):
     """Класс для работы с json файлом """
-    def save_data(self, data):
+    def save_data(self, data: list) -> None:
         """Метод для сохранения данных в json файл"""
         with open(os.path.join("../", "data", "data.json"), "w", encoding="utf-8") as file:
             all_data = []
@@ -40,7 +40,7 @@ class SaveToFileJSON(SaveToFile):
 
             json.dump(all_data, file, ensure_ascii=False)
 
-    def get_data(self, param):
+    def get_data(self, param: str) -> list:
         """Метод для получения данных из json файла по параметрам"""
         sorted_data = []
 
@@ -53,7 +53,7 @@ class SaveToFileJSON(SaveToFile):
 
         return sorted_data
 
-    def delete_data(self):
+    def delete_data(self) -> None:
         """Метод для удаления данных из json файла"""
         with open(os.path.join("../", "data", "data.json"), "w", encoding="utf-8") as file:
             file.write("")

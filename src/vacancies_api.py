@@ -6,13 +6,13 @@ import os
 class VacanciesApi(ABC):
     """Абстрактный класс для работы с API"""
     @abstractmethod
-    def get_vacancies(self, name_vacancies):
+    def get_vacancies(self, name_vacancies: str) -> list:
         pass
 
 
 class HeadHunterAPI(VacanciesApi):
     """Класс для получения вакансий с hh.ru"""
-    def get_vacancies(self, name_vacancies):
+    def get_vacancies(self, name_vacancies: str) -> list:
         """Метод для получения вакансий.
            Возвращает вакансии в которых указано ключевое слово name_vacancies.
            Возвращает максимум 100 вакансий"""
@@ -24,7 +24,7 @@ class HeadHunterAPI(VacanciesApi):
 
 class SuperJobAPI(VacanciesApi):
     """Класс для получения вакансий с superjob.ru"""
-    def get_vacancies(self, name_vacancies):
+    def get_vacancies(self, name_vacancies: str) -> list:
         """Метод для получения вакансий.
            Возвращает вакансии в которых указано ключевое слово name_vacancies.
            Возвращает максимум 100 вакансий"""

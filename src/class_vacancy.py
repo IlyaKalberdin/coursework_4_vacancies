@@ -2,7 +2,8 @@ class Vacancy:
     """Класс для работы с вакансиями"""
     all_vacancies = []
 
-    def __init__(self, name, url, salary_from, salary_to, currency, description, requirements, area):
+    def __init__(self, name: str, url: str, salary_from: int, salary_to: int,
+                 currency: str, description: str, requirements: str, area: str) -> None:
         """Инициализация экземпляра класса"""
         self.name = name
         self.url = url
@@ -15,7 +16,7 @@ class Vacancy:
 
         self.all_vacancies.append(self)
 
-    def __str__(self):
+    def __str__(self) -> str:
         """Метод возвращает информацию о вакансии для пользователя"""
         if self.salary_from != 0 and self.salary_to != 0:
             salary = f"{self.salary_from}-{self.salary_to}"
@@ -38,13 +39,13 @@ class Vacancy:
                 f"{self.requirements}\n"
                 "--------------------------------------------------------------------------------------")
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """Метод возвращает все свойства экземпляра класса"""
         return (f"{self.name}\n{self.salary_from}-{self.salary_to}{self.currency}\n"
                 f"{self.area}\n{self.url}\n{self.requirements}\n{self.description}")
 
     @classmethod
-    def init_vacancies_headhunter(cls, vacancies):
+    def init_vacancies_headhunter(cls, vacancies: list) -> None:
         """Метод класса для инициализации экземпляров на основе полученных
            вакансий с сайта hh.ru"""
         for vacancy in vacancies:
@@ -91,7 +92,7 @@ class Vacancy:
             cls(name, url, salary_from, salary_to, currency, description, requirements, area)
 
     @classmethod
-    def init_vacancies_superjob(cls, vacancies):
+    def init_vacancies_superjob(cls, vacancies: list) -> None:
         """Метод класса для инициализации экземпляров на основе полученных
            вакансий с сайта superjob.ru"""
         for vacancy in vacancies:
@@ -130,7 +131,7 @@ class Vacancy:
             cls(name, url, salary_from, salary_to, currency, description, requirements, area)
 
     @classmethod
-    def sorted_vacancies_salary(cls):
+    def sorted_vacancies_salary(cls) -> None:
         """Метод класса для сортировки по зарплате.
            Сначала идут вакансии с самой высокой минимальной оплатой в долларах.
            Потом в рублях и потом в остальных валютах"""
@@ -139,7 +140,7 @@ class Vacancy:
         cls.all_vacancies.sort(key=lambda vacancy: vacancy.currency, reverse=True)
 
     @classmethod
-    def get_sorted_vacancies(cls, keyword):
+    def get_sorted_vacancies(cls, keyword: str) -> list:
         """Метод класса, который возвращает список вакансий по ключевому слову"""
         sorted_vacancies = []
 
@@ -150,6 +151,6 @@ class Vacancy:
         return sorted_vacancies
 
     @staticmethod
-    def get_top_vacancies(vacancies, top_n):
+    def get_top_vacancies(vacancies: list, top_n: str) -> list:
         """Метод, который возвращает топ n вакансий из списка"""
         return vacancies[:top_n]

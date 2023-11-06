@@ -16,7 +16,12 @@ def main():
 
     # Получение вакансий по параметру name_vacancies
     vacancies_hh = hh.get_vacancies(name_vacancies)
-    vacancies_sj = sj.get_vacancies(name_vacancies)
+
+    try:
+        vacancies_sj = sj.get_vacancies(name_vacancies)
+    except KeyError:
+        print("Не получены вакансии с superjob. Укажите верный токен.")
+        return
 
     # Создание экземпляров вакансий
     Vacancy.init_vacancies_headhunter(vacancies_hh)
@@ -55,8 +60,7 @@ def main():
     else:
         vacancy = Vacancy(vacancy["name"], vacancy["url"], vacancy["salary_from"], vacancy["salary_to"],
                           vacancy["currency"], vacancy["description"], vacancy["requirements"], vacancy["area"])
-
-    print(vacancy)
+        print(vacancy)
 
     # Удаление вакансий из файла
     user_input = input("Желаете удалить все вакансии из файла? Да/Нет: ").lower()
